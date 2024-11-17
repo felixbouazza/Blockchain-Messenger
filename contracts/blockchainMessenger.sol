@@ -5,25 +5,24 @@ pragma solidity 0.8.26;
 contract BlockchainMessenger {
 
     address private owner;
-    string public message;
-    int public messageUpdatedAmount;
+    bytes32 private message;
+    int public updateCounter;
 
-    constructor(string memory initialMessage) {
+    constructor(bytes32 initialMessage) {
         message = initialMessage;
         owner = msg.sender;
     }
 
-    modifier onlyOwner() { // Modifier
-        require(
-            msg.sender == owner,
-            "Only owner can call this."
-        );
-        _;
+    function getMessage() public view returns(string memory) {
+        string memory converted = string(abi.encodePacked(message));
+        return converted;
     }
 
-    function updateMessage(string memory newMessage) public onlyOwner {
-        message = newMessage;
-        messageUpdatedAmount++;
+    function changeMessage(bytes32 newMessage) public {
+        if (owner == msg.sender && newMessage != message) {
+            message = newMessage;
+            updateCounter++;
+        }
     }
 
 }
