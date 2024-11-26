@@ -1,28 +1,15 @@
-REMIX DEFAULT WORKSPACE
+# BlockchainMessenger
 
-Remix default workspace is present when:
-i. Remix loads for the very first time 
-ii. A new workspace is created with 'Default' template
-iii. There are no files existing in the File Explorer
+## Overview
+__BlockchainMessenger__ is a simple Solidity-based smart contract that allows users to store, view, and update a message on the Ethereum blockchain. The contract is designed to store a message as a bytes32 type and provide functionality to update that message by the contract's owner. Additionally, the contract tracks the number of updates made to the message, providing a simple yet effective way to interact with stored data on the blockchain.
 
-This workspace contains 3 directories:
+## Features
+- __Store a Message__: Store an initial message when deploying the contract.
+- __View the Message__: Retrieve the stored message in a human-readable format.
+- __Update the Message__: Only the contract owner can update the stored message, with a counter tracking the number of updates.
+- __Ownership Control__: The contract owner is the only one authorized to change the message.
 
-1. 'contracts': Holds three contracts with increasing levels of complexity.
-2. 'scripts': Contains four typescript files to deploy a contract. It is explained below.
-3. 'tests': Contains one Solidity test file for 'Ballot' contract & one JS test file for 'Storage' contract.
-
-SCRIPTS
-
-The 'scripts' folder has four typescript files which help to deploy the 'Storage' contract using 'web3.js' and 'ethers.js' libraries.
-
-For the deployment of any other contract, just update the contract's name from 'Storage' to the desired contract and provide constructor arguments accordingly 
-in the file `deploy_with_ethers.ts` or  `deploy_with_web3.ts`
-
-In the 'tests' folder there is a script containing Mocha-Chai unit tests for 'Storage' contract.
-
-To run a script, right click on file name in the file explorer and click 'Run'. Remember, Solidity file must already be compiled.
-Output from script will appear in remix terminal.
-
-Please note, require/import is supported in a limited manner for Remix supported modules.
-For now, modules supported by Remix are ethers, web3, swarmgw, chai, multihashes, remix and hardhat only for hardhat.ethers object/plugin.
-For unsupported modules, an error like this will be thrown: '<module_name> module require is not supported by Remix IDE' will be shown.
+## Contract Details
+- __Owner__: The account that deploys the contract becomes the owner and has the exclusive ability to change the message.
+- __Message Storage__: The message is stored as a bytes32 type, which is a fixed-size, 32-byte string, to optimize storage space.
+- __Update Counter__: Tracks the number of times the message has been updated.
